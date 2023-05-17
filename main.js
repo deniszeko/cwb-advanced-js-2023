@@ -212,4 +212,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePlayerName();
     console.log("ready!");
+
+    // create action buttons panel
+    let actionButtons = document.createElement('div');
+    actionButtons.id = 'buttons';
+    let resetButton = document.createElement('button');
+    resetButton.id = 'reset';
+    resetButton.textContent = "Start new game";
+    actionButtons.append(resetButton);
+    document.body.append(actionButtons);
+
+    // clearing the field
+    resetButton.addEventListener('click', () => {
+        let setCells = document.querySelectorAll('.cell.set');
+        for (cell of setCells) {
+            cell.classList.remove('set');
+            cell.innerHTML = '';
+        }
+        document.querySelector('.line')?.remove();
+
+        // restoring the player indications
+        player = 'X'
+        document.querySelector('.player').innerHTML = 'Player <span class="playerName"></span> go</div>';
+        updatePlayerName();
+        console.log("reset!")
+    })
 });
